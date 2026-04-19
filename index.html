@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOLEIL — Drop 001 · Summer 2026</title>
+  <meta name="description" content="SOLEIL Drop 001. The Summer Archive. Limited pieces. European summer, reimagined." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #FAF7F2;
+      --espresso: #1A1410;
+      --gold: #B8963E;
+      --gold-light: #D4AE5C;
+    }
+
+    body {
+      background: var(--espresso);
+      color: var(--cream);
+      font-family: 'Georgia', serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ZEBRA BACKGROUND — subtle diagonal stripes across entire page */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image: repeating-linear-gradient(
+        -52deg,
+        #fff 0px, #fff 16px,
+        transparent 16px, transparent 38px
+      );
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 28px 60px;
+      border-bottom: 0.5px solid rgba(184,150,62,0.2);
+      background: rgba(26,20,16,0.85);
+      backdrop-filter: blur(12px);
+    }
+    .nav-wordmark {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 13px; font-weight: 200; letter-spacing: 0.55em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    .nav-right {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase;
+      color: rgba(250,247,242,0.4);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; position: relative; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 40px 80px;
+    }
+
+    .drop-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 9px; letter-spacing: 0.6em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 48px; border: 0.5px solid rgba(184,150,62,0.4);
+      padding: 8px 24px; display: inline-block;
+    }
+
+    /* HEADLINE — ultra thin, luxury editorial */
+    .headline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(52px, 9vw, 108px);
+      font-weight: 200;
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      color: var(--cream);
+    }
+    .headline em {
+      font-style: italic;
+      color: var(--gold-light);
+      font-weight: 200;
+    }
+
+    .subhead {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase;
+      color: rgba(250,247,242,0.35); margin-bottom: 80px; margin-top: 24px;
+    }
+
+    /* COUNTDOWN */
+    .countdown-wrapper { margin-bottom: 0; }
+    .countdown-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 9px; letter-spacing: 0.5em; text-transform: uppercase;
+      color: rgba(250,247,242,0.3); margin-bottom: 24px;
+    }
+    .countdown {
+      display: flex; gap: 0; align-items: flex-start; justify-content: center;
+    }
+    .countdown-unit { display: flex; flex-direction: column; align-items: center; }
+    .countdown-number {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(52px, 9vw, 96px); font-weight: 200; line-height: 1;
+      color: var(--cream); min-width: 120px; text-align: center; letter-spacing: -0.01em;
+    }
+    .countdown-divider {
+      font-size: clamp(40px, 7vw, 72px); color: rgba(184,150,62,0.4);
+      line-height: 1; padding: 0 8px; margin-top: 4px;
+      font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 200;
+    }
+    .countdown-sublabel {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+      color: rgba(250,247,242,0.25); margin-top: 12px;
+    }
+
+    /* ZEBRA STRIP DIVIDER */
+    .zebra-strip {
+      width: 100%; height: 1px; position: relative; z-index: 2;
+      background: repeating-linear-gradient(90deg, rgba(184,150,62,0.4) 0, rgba(184,150,62,0.4) 8px, transparent 8px, transparent 16px);
+    }
+
+    /* PRODUCTS */
+    .products-section {
+      padding: 80px 60px; position: relative; z-index: 2;
+      border-top: 0.5px solid rgba(184,150,62,0.15);
+    }
+    .products-header { text-align: center; margin-bottom: 64px; }
+    .products-header h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-size: 11px; font-weight: 200;
+      letter-spacing: 0.5em; text-transform: uppercase; color: rgba(250,247,242,0.3); margin-bottom: 16px;
+    }
+    .products-header .drop-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(28px, 4vw, 44px); font-weight: 200; color: var(--cream);
+      letter-spacing: 0.02em;
+    }
+
+    .product-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; max-width: 1200px; margin: 0 auto;
+    }
+
+    /* last row — if only 2 cards, center them */
+    .product-grid .product-card:nth-child(4):last-child,
+    .product-grid .product-card:nth-child(4):nth-last-child(2) {
+      grid-column: 1;
+    }
+
+    .product-card { position: relative; overflow: hidden; cursor: pointer; }
+    .product-img {
+      width: 100%; aspect-ratio: 3/4;
+      background: #2a2018; position: relative; overflow: hidden;
+    }
+    .product-img img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top; display: block;
+      filter: sepia(0.06) contrast(1.04);
+      transition: transform 0.7s ease;
+    }
+    .product-card:hover .product-img img { transform: scale(1.04); }
+
+    .sold-out-overlay {
+      position: absolute; inset: 0; background: rgba(26,20,16,0.55);
+      display: flex; align-items: center; justify-content: center; z-index: 3;
+    }
+    .sold-out-badge {
+      border: 0.5px solid rgba(250,247,242,0.6); padding: 10px 28px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 9px; letter-spacing: 0.5em; text-transform: uppercase;
+      color: var(--cream); background: rgba(26,20,16,0.5);
+    }
+
+    .product-info { padding: 20px 0 32px; background: var(--espresso); }
+    .product-name {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300;
+      font-size: 17px; color: var(--cream); margin-bottom: 4px; letter-spacing: 0.02em;
+    }
+    .product-detail {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(250,247,242,0.3);
+    }
+
+    /* EMAIL */
+    .email-section {
+      position: relative; z-index: 2; padding: 100px 60px; text-align: center;
+      border-top: 0.5px solid rgba(184,150,62,0.15);
+      max-width: 700px; margin: 0 auto;
+    }
+    .email-eyebrow {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 9px; letter-spacing: 0.55em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 32px;
+    }
+    .email-headline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(28px, 4vw, 44px); font-weight: 200;
+      color: var(--cream); line-height: 1.2; margin-bottom: 16px;
+    }
+    .email-headline em { font-style: italic; color: var(--gold-light); }
+    .email-sub {
+      font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 12px;
+      color: rgba(250,247,242,0.35); letter-spacing: 0.05em;
+      line-height: 1.7; margin-bottom: 48px;
+    }
+    .email-form {
+      display: flex; gap: 0; max-width: 480px; margin: 0 auto;
+      border: 0.5px solid rgba(184,150,62,0.4);
+    }
+    .email-input {
+      flex: 1; background: transparent; border: none; outline: none;
+      padding: 18px 24px; font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 12px; color: var(--cream); letter-spacing: 0.05em; min-width: 0;
+    }
+    .email-input::placeholder { color: rgba(250,247,242,0.25); letter-spacing: 0.2em; font-size: 10px; text-transform: uppercase; }
+    .email-btn {
+      background: var(--gold); border: none; padding: 18px 32px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--espresso); cursor: pointer; font-weight: 500; transition: background 0.2s;
+    }
+    .email-btn:hover { background: var(--gold-light); }
+    .email-fine {
+      margin-top: 20px; font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10px; color: rgba(250,247,242,0.18); letter-spacing: 0.05em;
+    }
+    .success-msg {
+      display: none; font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 16px; font-style: italic; color: var(--gold-light); margin-top: 24px;
+    }
+
+    /* FOOTER */
+    footer {
+      position: relative; z-index: 2; padding: 40px 60px;
+      border-top: 0.5px solid rgba(184,150,62,0.08);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-size: 11px; font-weight: 200;
+      letter-spacing: 0.45em; text-transform: uppercase; color: rgba(184,150,62,0.5);
+    }
+    .footer-copy {
+      font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 10px;
+      letter-spacing: 0.1em; color: rgba(250,247,242,0.15);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      nav { padding: 20px 28px; }
+      .products-section { padding: 60px 24px; }
+    }
+    @media (max-width: 600px) {
+      .product-grid { grid-template-columns: 1fr 1fr; }
+      .email-section { padding: 80px 24px; }
+      .email-form { flex-direction: column; }
+      .email-btn { padding: 16px; text-align: center; }
+      footer { padding: 32px 20px; flex-direction: column; gap: 12px; text-align: center; }
+      .headline { font-size: clamp(40px, 13vw, 72px); }
+      .countdown-number { min-width: 70px; font-size: clamp(40px, 12vw, 72px); }
+      .countdown-divider { font-size: clamp(32px, 10vw, 56px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-wordmark">Soleil</div>
+    <div class="nav-right">Drop 001 — Summer '26</div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="drop-label">Drop 001 · Summer Collection 2026</div>
+
+    <h1 class="headline">
+      Bad girls<br>bring <em>good luck.</em>
+    </h1>
+
+    <p class="subhead">Ibiza &nbsp;·&nbsp; Positano &nbsp;·&nbsp; Mykonos &nbsp;·&nbsp; St. Tropez</p>
+
+    <div class="countdown-wrapper">
+      <p class="countdown-label">Next Drop Opens In</p>
+      <div class="countdown">
+        <div class="countdown-unit">
+          <span class="countdown-number" id="days">00</span>
+          <span class="countdown-sublabel">Days</span>
+        </div>
+        <span class="countdown-divider">:</span>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="hours">00</span>
+          <span class="countdown-sublabel">Hours</span>
+        </div>
+        <span class="countdown-divider">:</span>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="minutes">00</span>
+          <span class="countdown-sublabel">Minutes</span>
+        </div>
+        <span class="countdown-divider">:</span>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="seconds">00</span>
+          <span class="countdown-sublabel">Seconds</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="zebra-strip"></div>
+
+  <!-- PRODUCTS -->
+  <section class="products-section">
+    <div class="products-header">
+      <h2>Drop 001</h2>
+      <div class="drop-title">The Summer Archive</div>
+    </div>
+
+    <div class="product-grid">
+
+      <!-- 1 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="images/dress1.png" alt="Floral Sequin Strapless Gown" />
+          <div class="sold-out-overlay"><div class="sold-out-badge">Sold Out</div></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Jardin Sequin Gown</div>
+          <div class="product-detail">Limited · 12 Pieces · $1,290</div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="images/dress2.png" alt="Butterfly Fringe Maxi" />
+          <div class="sold-out-overlay"><div class="sold-out-badge">Sold Out</div></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Papillon Fringe Maxi</div>
+          <div class="product-detail">Limited · 8 Pieces · $1,890</div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="images/dress3.png" alt="Swirl Crystal Halter Maxi" />
+          <div class="sold-out-overlay"><div class="sold-out-badge">Sold Out</div></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Cosmos Crystal Maxi</div>
+          <div class="product-detail">Limited · 10 Pieces · $980</div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="images/dress4.png" alt="Zebra Tiger Slip Dress" />
+          <div class="sold-out-overlay"><div class="sold-out-badge">Sold Out</div></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Savanna Slip</div>
+          <div class="product-detail">Limited · 15 Pieces · €750</div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="images/dress5.png" alt="Crystal Embellished Mini" />
+        </div>
+        <div class="product-info">
+          <div class="product-name">Palazzo Crystal Mini</div>
+          <div class="product-detail">Available — Drop 002 · €2,400</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="zebra-strip"></div>
+
+  <!-- EMAIL -->
+  <section class="email-section">
+    <p class="email-eyebrow">Access is earned, not given</p>
+    <h2 class="email-headline">Be first for<br><em>Drop 002.</em></h2>
+    <p class="email-sub">Soleil drops sell out in under four minutes.<br>Our list is the only way in.</p>
+
+    <div class="email-form" id="emailForm">
+      <input type="email" class="email-input" placeholder="Your email address" id="emailInput" />
+      <button class="email-btn" onclick="handleSubmit()">Notify Me</button>
+    </div>
+    <p class="success-msg" id="successMsg">You're on the list. See you in Ibiza. ✦</p>
+    <p class="email-fine">No noise. One email per drop. Unsubscribe anytime.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">Soleil</div>
+    <div class="footer-copy">© 2026 Soleil Private Collection. All rights reserved.</div>
+  </footer>
+
+  <script>
+    /* ---- COUNTDOWN — loops every 30 days so it never hits zero ---- */
+    var LOOP_DAYS = 30;
+
+    function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+    function getTarget() {
+      var t = new Date();
+      t.setDate(t.getDate() + LOOP_DAYS);
+      t.setHours(12, 0, 0, 0);
+      return t;
+    }
+
+    var target = getTarget();
+
+    function tick() {
+      var diff = target - Date.now();
+      if (diff <= 0) {
+        /* reset to another 30-day window and keep going */
+        target = getTarget();
+        diff   = target - Date.now();
+      }
+      document.getElementById('days').textContent    = pad(Math.floor(diff / 86400000));
+      document.getElementById('hours').textContent   = pad(Math.floor((diff % 86400000) / 3600000));
+      document.getElementById('minutes').textContent = pad(Math.floor((diff % 3600000) / 60000));
+      document.getElementById('seconds').textContent = pad(Math.floor((diff % 60000) / 1000));
+    }
+
+    tick();
+    setInterval(tick, 1000);
+
+    /* ---- EMAIL ---- */
+    function handleSubmit() {
+      var input = document.getElementById('emailInput');
+      var val   = (input.value || '').trim();
+      if (!val || !val.includes('@')) {
+        input.style.outline = '0.5px solid rgba(184,100,62,0.7)';
+        input.placeholder   = 'Valid email required';
+        input.value = '';
+        return;
+      }
+      document.getElementById('emailForm').style.opacity = '0.3';
+      document.getElementById('successMsg').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
