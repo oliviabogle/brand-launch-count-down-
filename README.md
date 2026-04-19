@@ -1,5 +1,5 @@
-# brand-launch-count-down-
-# ⏳ Brand Launch Countdown
+# brand-launch-count-down-functional-clock 
+# ⏳ Brand Launch Countdown clock
 
 A simple, centered countdown clock for a fictional brand launch.
 
